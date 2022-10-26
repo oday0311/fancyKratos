@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"github.com/go-kratos/kratos/v2/log"
 
 	v1 "fancyKrato/api/helloworld/v1"
 	"fancyKrato/internal/biz"
@@ -26,4 +27,13 @@ func (s *GreeterService) SayHello(ctx context.Context, in *v1.HelloRequest) (*v1
 		return nil, err
 	}
 	return &v1.HelloReply{Message: "Hello " + g.Hello}, nil
+}
+
+func (s *GreeterService) GetAccount(ctx context.Context, in *v1.AccountRequest) (*v1.AccountResponse, error) {
+
+	//get data from DB.
+	//g, err := s.uc.CreateGreeter(ctx, &biz.Greeter{Hello: in.Name})
+	log.Debug("GetAccount: ", in.GetName())
+
+	return &v1.AccountResponse{Message: "Hello " + " this is the account model"}, nil
 }

@@ -7,6 +7,25 @@ info:
     description: The greeting service definition.
     version: 0.0.1
 paths:
+    /account/{name}:
+        get:
+            tags:
+                - Greeter
+            description: new API
+            operationId: Greeter_GetAccount
+            parameters:
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/helloworld.v1.AccountResponse'
     /helloworld/{name}:
         get:
             tags:
@@ -28,6 +47,12 @@ paths:
                                 $ref: '#/components/schemas/helloworld.v1.HelloReply'
 components:
     schemas:
+        helloworld.v1.AccountResponse:
+            type: object
+            properties:
+                message:
+                    type: string
+            description: The response message containing the greetings
         helloworld.v1.HelloReply:
             type: object
             properties:
